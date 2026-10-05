@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Clubs · Novels with Neighbors</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <main id="main" class="wrap">
+    <header class="page-header">
+      <div>
+        <p class="eyebrow">Novels with Neighbors</p>
+        <h1>Clubs</h1>
+      </div>
+      <button class="btn small" id="create-btn" type="button">+ Create a club</button>
+    </header>
+    <div id="clubs"></div>
+
+    <dialog id="create-dialog" aria-labelledby="create-title">
+      <form id="create-form" novalidate>
+        <h2 id="create-title">Create a book club</h2>
+        <div class="field">
+          <label for="club-name">Club name</label>
+          <input id="club-name" maxlength="40" required>
+          <p class="error-text" id="club-name-error"></p>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="club-genre">Genre</label>
+            <select id="club-genre" required></select>
+            <p class="error-text" id="club-genre-error"></p>
+          </div>
+          <div class="field">
+            <label for="club-size">Max members</label>
+            <input id="club-size" type="number" inputmode="numeric" min="3" max="30" value="10" required>
+            <p class="error-text" id="club-size-error"></p>
+          </div>
+        </div>
+        <div class="field">
+          <label for="club-place">Where you'll meet</label>
+          <input id="club-place" placeholder="e.g. Maple Street Library" required>
+          <p class="error-text" id="club-place-error"></p>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="club-date">First meeting</label>
+            <input id="club-date" type="date" required>
+            <p class="error-text" id="club-date-error"></p>
+          </div>
+          <div class="field">
+            <label for="club-time">Time</label>
+            <input id="club-time" type="time" value="19:00" required>
+            <p class="error-text" id="club-time-error"></p>
+          </div>
+        </div>
+        <div class="field">
+          <label for="club-description">Short description <span class="muted">(optional)</span></label>
+          <textarea id="club-description" maxlength="200"></textarea>
+        </div>
+        <div class="actions">
+          <button class="btn" type="submit">Create club</button>
+          <button class="btn secondary" type="button" id="cancel-create">Cancel</button>
+        </div>
+      </form>
+    </dialog>
+  </main>
+  <script src="js/ui.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/clubs.js"></script>
+</body>
+</html>

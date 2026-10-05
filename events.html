@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Events · Novels with Neighbors</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <main id="main" class="wrap">
+    <header class="page-header">
+      <div>
+        <p class="eyebrow">Novels with Neighbors</p>
+        <h1>Events nearby</h1>
+      </div>
+      <button class="btn small" id="post-btn" type="button">+ Post an event</button>
+    </header>
+    <div class="chips" role="group" aria-label="Show events">
+      <label class="chip"><input type="radio" name="range" value="week" checked><span>This week</span></label>
+      <label class="chip"><input type="radio" name="range" value="all"><span>All upcoming</span></label>
+    </div>
+    <div id="events" class="list" style="margin-top:16px"></div>
+
+    <dialog id="post-dialog" aria-labelledby="post-title">
+      <form id="post-form" novalidate>
+        <h2 id="post-title">Post an event</h2>
+        <div class="field">
+          <label for="event-title">Event name</label>
+          <input id="event-title" maxlength="60" required>
+          <p class="error-text" id="event-title-error"></p>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="event-date">Date</label>
+            <input id="event-date" type="date" required>
+            <p class="error-text" id="event-date-error"></p>
+          </div>
+          <div class="field">
+            <label for="event-time">Time</label>
+            <input id="event-time" type="time" required>
+            <p class="error-text" id="event-time-error"></p>
+          </div>
+        </div>
+        <div class="field">
+          <label for="event-place">Location</label>
+          <input id="event-place" required>
+          <p class="error-text" id="event-place-error"></p>
+        </div>
+        <div class="field">
+          <label for="event-description">Details <span class="muted">(optional)</span></label>
+          <textarea id="event-description" maxlength="300"></textarea>
+        </div>
+        <div class="actions">
+          <button class="btn" type="submit">Post event</button>
+          <button class="btn secondary" type="button" id="cancel-post">Cancel</button>
+        </div>
+      </form>
+    </dialog>
+  </main>
+  <script src="js/ui.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/events.js"></script>
+</body>
+</html>

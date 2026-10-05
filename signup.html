@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sign up · Novels with Neighbors</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <main id="main" class="wrap">
+    <header class="page-header">
+      <div>
+        <p class="eyebrow">Novels with Neighbors</p>
+        <h1>Join your neighbors</h1>
+      </div>
+    </header>
+    <p class="muted">Create your reader profile to save books, join clubs and get suggestions.</p>
+
+    <form id="signup-form" class="card" novalidate>
+      <div class="field-row">
+        <div class="field">
+          <label for="name">First name</label>
+          <input id="name" name="name" autocomplete="given-name" required>
+          <p class="error-text" id="name-error"></p>
+        </div>
+        <div class="field">
+          <label for="lastName">Last name <span class="muted">(optional)</span></label>
+          <input id="lastName" name="lastName" autocomplete="family-name">
+        </div>
+      </div>
+      <div class="field">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" autocomplete="email" required>
+        <p class="error-text" id="email-error"></p>
+      </div>
+      <div class="field">
+        <label for="neighborhood">Neighborhood or ZIP code</label>
+        <input id="neighborhood" name="neighborhood" autocomplete="postal-code" required>
+        <p class="error-text" id="neighborhood-error"></p>
+      </div>
+      <fieldset class="field" style="border:0;padding:0;margin:0 0 16px">
+        <legend class="label-like">Genres you enjoy (pick at least one)</legend>
+        <div class="chips" id="genre-options"></div>
+        <p class="error-text" id="genres-error"></p>
+      </fieldset>
+      <button class="btn" type="submit">Create profile</button>
+      <p class="small muted" style="margin-top:12px">Prototype note: your profile is saved on this device only.</p>
+    </form>
+  </main>
+  <script src="js/ui.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/signup.js"></script>
+</body>
+</html>

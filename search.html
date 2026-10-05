@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Search · Novels with Neighbors</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <main id="main" class="wrap">
+    <p><a href="books.html" class="small">← Books</a></p>
+    <header class="page-header">
+      <div>
+        <p class="eyebrow">Novels with Neighbors</p>
+        <h1>Find a book</h1>
+      </div>
+    </header>
+
+    <form id="search-form" class="search-bar" role="search" novalidate>
+      <label class="visually-hidden" for="field">Search by</label>
+      <select id="field" name="field">
+        <option value="title">Title</option>
+        <option value="author">Author</option>
+        <option value="genre">Genre</option>
+        <option value="keyword">Keyword</option>
+      </select>
+      <label class="visually-hidden" for="query">Search for</label>
+      <input id="query" name="query" type="search" placeholder="e.g. Middlemarch" autocomplete="off">
+      <button class="btn" type="submit">Search</button>
+    </form>
+    <p id="search-error" class="error-text" role="alert"></p>
+
+    <div id="search-status" class="search-status" aria-live="polite"></div>
+    <div id="results" class="list"></div>
+  </main>
+  <script src="js/ui.js"></script>
+  <script src="js/api.js"></script>
+  <script src="data/fallback-books.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/search.js"></script>
+</body>
+</html>

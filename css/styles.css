@@ -1,0 +1,434 @@
+/* ==========================================================================
+   Novels with Neighbors — shared stylesheet
+   Look & feel: "Dark, warm" direction (team look-and-feel PDF, page 1)
+   ========================================================================== */
+
+:root {
+  /* Colors */
+  --bg: #141416;
+  --surface: #1c1c21;
+  --surface-2: #24242a;
+  --border: #2e2e35;
+  --text: #f2efe9;
+  --muted: #a7a39b;
+  --amber: #e9a23b;
+  --amber-dark: #c9851f;
+  --danger: #e2735f;
+  --danger-bg: rgba(226, 115, 95, 0.12);
+  --success: #7fbf8e;
+
+  /* Book-cover tile palette (assigned per title so a book always gets the same color) */
+  --cover-1: #2f4a3a;
+  --cover-2: #3e2b50;
+  --cover-3: #5a2b25;
+  --cover-4: #20304b;
+  --cover-5: #4a3b1e;
+  --cover-6: #1f3c3c;
+
+  /* Type */
+  --serif: "Newsreader", Georgia, "Times New Roman", serif;
+  --sans: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --radius: 14px;
+  --nav-h: 68px;
+  --app-w: 480px;
+  color-scheme: dark; /* single, deliberately dark theme */
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+/* Mobile-only app: on larger screens the app shows as a phone-width column */
+html { background: #0b0b0c; }
+
+body {
+  margin: 0 auto;
+  max-width: var(--app-w);
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.5;
+  padding-bottom: calc(var(--nav-h) + 24px); /* room for the bottom nav on phones */
+}
+
+a { color: var(--amber); }
+img { max-width: 100%; display: block; }
+
+h1, h2, h3 {
+  font-family: var(--serif);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  margin: 0 0 0.4em;
+  line-height: 1.15;
+}
+h1 { font-size: 2rem; }
+h2 { font-size: 1.5rem; }
+h3 { font-size: 1.15rem; }
+
+.wrap {
+  margin: 0 auto;
+  padding: 24px 16px;
+}
+
+.eyebrow {
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 4px;
+}
+.eyebrow.amber { color: var(--amber); font-weight: 700; }
+.muted { color: var(--muted); }
+.small { font-size: 0.875rem; }
+
+.skip-link {
+  position: absolute; left: -999px; top: 8px;
+  background: var(--amber); color: #1a1408; padding: 8px 12px; border-radius: 8px; z-index: 100;
+}
+.skip-link:focus { left: 8px; }
+
+:focus-visible { outline: 3px solid var(--amber); outline-offset: 2px; }
+
+/* ---------- Header + navigation ---------- */
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.site-nav {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(100%, var(--app-w));
+  height: calc(var(--nav-h) + env(safe-area-inset-bottom, 0px));
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  background: #0f0f11;
+  border-top: 1px solid var(--border);
+  z-index: 50;
+}
+.site-nav ul {
+  list-style: none;
+  margin: 0 auto;
+  padding: 0;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+.site-nav a {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.75rem;
+}
+.site-nav a[aria-current="page"] { color: var(--amber); }
+.site-nav svg { width: 22px; height: 22px; }
+
+
+/* ---------- Buttons + forms ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border: 0;
+  border-radius: 999px;
+  padding: 11px 22px;
+  font: 700 0.95rem var(--sans);
+  cursor: pointer;
+  text-decoration: none;
+  background: var(--amber);
+  color: #1a1408;
+}
+.btn:hover { background: var(--amber-dark); }
+.btn:disabled { opacity: 0.45; cursor: not-allowed; }
+.btn.secondary { background: var(--surface-2); color: var(--text); border: 1px solid var(--border); }
+.btn.secondary:hover { background: var(--border); }
+.btn.small { padding: 7px 14px; font-size: 0.85rem; }
+.btn.danger { background: transparent; color: var(--danger); border: 1px solid var(--danger); }
+
+label { display: block; font-weight: 600; font-size: 0.9rem; margin-bottom: 6px; }
+input, select, textarea {
+  width: 100%;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 10px;
+  padding: 11px 12px;
+  font: inherit;
+}
+input:focus, select:focus, textarea:focus { border-color: var(--amber); outline: none; }
+textarea { min-height: 90px; resize: vertical; }
+
+.field { margin-bottom: 16px; }
+.field-row { display: grid; gap: 12px; grid-template-columns: 1fr 1fr; }
+@media (max-width: 520px) { .field-row { grid-template-columns: 1fr; } }
+
+.error-text { color: var(--danger); font-size: 0.85rem; margin-top: 4px; min-height: 1em; }
+
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.chip span {
+  display: inline-block;
+  padding: 7px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--muted);
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+.chip input:checked + span { background: var(--amber); border-color: var(--amber); color: #1a1408; }
+.chip input:focus-visible + span { outline: 3px solid var(--amber); outline-offset: 2px; }
+
+/* ---------- Cards + sections ---------- */
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+}
+.section { margin: 36px 0; }
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.section-head h2 { margin: 0; }
+
+.empty {
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  text-align: center;
+  color: var(--muted);
+}
+
+/* ---------- Book cover tiles ---------- */
+
+.cover {
+  position: relative;
+  aspect-ratio: 2 / 3;
+  border-radius: 8px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  color: var(--text);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  container-type: inline-size; /* lets the title size itself to the tile width */
+}
+.cover .cover-title { font-family: var(--serif); font-size: clamp(0.6rem, 17cqi, 1.6rem); line-height: 1.1; hyphens: auto; overflow-wrap: break-word; }
+.cover .cover-author { font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.85; }
+.cover img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.cover.c1 { background: var(--cover-1); } .cover.c2 { background: var(--cover-2); }
+.cover.c3 { background: var(--cover-3); } .cover.c4 { background: var(--cover-4); }
+.cover.c5 { background: var(--cover-5); } .cover.c6 { background: var(--cover-6); }
+
+.shelf {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(130px, 150px);
+  gap: 14px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  scroll-snap-type: x mandatory;
+}
+.shelf > * { scroll-snap-align: start; }
+.shelf-item { text-decoration: none; color: inherit; }
+.shelf-item .meta { margin-top: 8px; font-size: 0.85rem; }
+.shelf-item .meta .why { color: var(--amber); font-size: 0.75rem; }
+
+/* ---------- Home hero ---------- */
+
+.hero {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 20px;
+  align-items: center;
+}
+.hero h2 { font-size: 1.9rem; margin-bottom: 6px; }
+
+/* ---------- Ballot ---------- */
+
+.ballot { display: grid; grid-template-columns: repeat(3, minmax(0, 150px)); gap: 12px; }
+.ballot-option {
+  background: none; border: 0; padding: 0; text-align: left; cursor: pointer; color: inherit; font: inherit;
+}
+.ballot-option .cover { border: 2px solid transparent; }
+.ballot-option[aria-pressed="true"] .cover { border-color: var(--amber); }
+.ballot-option:disabled { cursor: default; }
+.vote-bar { height: 6px; border-radius: 3px; background: var(--surface-2); margin-top: 8px; overflow: hidden; }
+.vote-bar > span { display: block; height: 100%; background: var(--amber); }
+.your-vote { color: var(--amber); font-weight: 700; font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; }
+
+/* ---------- Lists (search results, events, clubs) ---------- */
+
+.list { display: grid; gap: 12px; }
+.row {
+  display: grid;
+  grid-template-columns: 64px 1fr auto;
+  gap: 14px;
+  align-items: center;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 12px;
+  color: inherit;
+  text-decoration: none;
+}
+.row:hover { border-color: #45454e; }
+.row .cover { padding: 6px; border-radius: 5px; align-items: center; justify-content: center; }
+/* Small tiles in lists are too narrow for a title, so they show the first letter instead */
+.row .cover .cover-title, .row .cover .cover-author { display: none; }
+.row .cover::after { content: attr(data-initial); font-family: var(--serif); font-size: 1.6rem; opacity: 0.9; }
+.row h3 { margin: 0; font-size: 1.05rem; }
+
+.grid-cards { display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+
+.event-card { display: flex; flex-direction: column; gap: 6px; }
+.event-date { color: var(--amber); font-weight: 700; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; }
+
+.pill {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--muted);
+}
+.pill.ok { color: var(--success); border-color: rgba(127, 191, 142, 0.4); }
+.pill.warn { color: var(--amber); border-color: rgba(233, 162, 59, 0.4); }
+
+/* ---------- Search ---------- */
+
+.search-bar { display: grid; grid-template-columns: 140px 1fr auto; gap: 10px; }
+@media (max-width: 600px) { .search-bar { grid-template-columns: 1fr; } }
+.search-status { margin: 16px 0; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+
+/* ---------- Book detail ---------- */
+
+.book-detail { display: grid; gap: 24px; grid-template-columns: 1fr; }
+.book-detail .cover .cover-title { font-size: 1.6rem; }
+.actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 18px 0; }
+.review { border-top: 1px solid var(--border); padding: 14px 0; }
+.stars { color: var(--amber); letter-spacing: 0.05em; }
+
+/* ---------- Dialog ---------- */
+
+dialog {
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  width: min(460px, calc(100vw - 32px));
+}
+dialog::backdrop { background: rgba(0, 0, 0, 0.6); }
+
+/* ---------- Toast ---------- */
+
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: calc(var(--nav-h) + 16px);
+  transform: translateX(-50%);
+  background: var(--text);
+  color: var(--bg);
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  z-index: 60;
+  max-width: calc(100vw - 32px);
+}
+
+.loading { color: var(--muted); padding: 20px 0; }
+
+/* ---------- Prototype 2 additions ---------- */
+
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+.label-like { font-weight: 600; font-size: 0.9rem; margin-bottom: 8px; padding: 0; }
+
+.book-detail .cover { width: 170px; margin: 0 auto; }
+.book-detail h1 { margin-top: 4px; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0; }
+.description { white-space: pre-line; }
+.row-actions { display: flex; flex-direction: column; gap: 6px; align-items: flex-end; }
+.count { font-weight: 700; color: var(--amber); }
+.profile-meta { display: grid; gap: 4px; }
+.link-button { background: none; border: 0; color: var(--amber); font: inherit; font-weight: 700; cursor: pointer; padding: 4px 0; }
+
+/* ---------- Books tab ---------- */
+
+.search-entry {
+  display: flex; align-items: center; gap: 10px;
+  background: var(--surface-2); border: 1px solid var(--border); border-radius: 999px;
+  padding: 12px 16px; color: var(--muted); text-decoration: none; margin: -8px 0 8px;
+}
+.search-entry svg { width: 18px; height: 18px; flex: none; }
+.search-entry:hover { border-color: var(--amber); }
+.shelf-small { grid-auto-columns: 104px; }
+.shelf-item .link-button { font-size: 0.8rem; }
+.suggest-head p { margin: 2px 0 0; }
+.shelf-item a { text-decoration: none; color: inherit; display: block; }
+
+/* ---------- Prototype 3: clubs, events ---------- */
+
+.club-row { grid-template-columns: 1fr auto; }
+.facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 16px; }
+.facts p { margin: 0; }
+.facts .eyebrow { margin-bottom: 4px; }
+.nominate { margin: 0 0 18px; }
+.nominate-row { display: grid; grid-template-columns: 1fr auto; gap: 8px; }
+.page-header .btn { flex: none; }
+#close-area { align-items: center; }
+
+/* ---------- Review round: full clubs, tappable messages, scrollbars ---------- */
+
+/* Full clubs stand out in red everywhere */
+.pill.full { color: var(--danger); background: var(--danger-bg); border-color: var(--danger); }
+.full-text { color: var(--danger); font-weight: 700; }
+
+/* Tappable message: goes to the related page */
+.toast-link {
+  display: flex; align-items: center; gap: 12px;
+  text-decoration: none; border-radius: 14px; padding: 12px 16px;
+  width: max-content;
+}
+.toast-link .toast-action { color: var(--amber-dark); white-space: nowrap; }
+.toast-link:hover .toast-action { text-decoration: underline; }
+
+/* Thin scrollbars in the app's colors (shelves and the page) */
+* { scrollbar-width: thin; scrollbar-color: #3a3a42 transparent; }
+.shelf { scrollbar-color: var(--amber) var(--surface-2); padding-bottom: 12px; }
+::-webkit-scrollbar { width: 6px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #3a3a42; border-radius: 999px; }
+.shelf::-webkit-scrollbar-track { background: var(--surface-2); border-radius: 999px; }
+.shelf::-webkit-scrollbar-thumb { background: var(--amber); border-radius: 999px; }
+.toast-danger { background: var(--danger); color: #1a0d0a; }

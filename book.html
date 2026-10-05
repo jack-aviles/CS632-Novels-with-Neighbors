@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Book · Novels with Neighbors</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <main id="main" class="wrap">
+    <p><a href="search.html" class="small" id="back-link">← Back to search</a></p>
+    <div id="book" aria-live="polite"><p class="loading">Loading book…</p></div>
+
+    <dialog id="read-dialog" aria-labelledby="read-title">
+      <form id="read-form" method="dialog" novalidate>
+        <h2 id="read-title">Mark as read</h2>
+        <fieldset class="field" style="border:0;padding:0;margin:0 0 16px">
+          <legend class="label-like">Your rating</legend>
+          <div class="chips" id="rating-options"></div>
+          <p id="rating-error" class="error-text"></p>
+        </fieldset>
+        <div class="field">
+          <label for="review-text">Review (optional)</label>
+          <textarea id="review-text" maxlength="500" placeholder="What did you think?"></textarea>
+        </div>
+        <div class="actions">
+          <button class="btn" type="submit" value="save">Save</button>
+          <button class="btn secondary" type="button" id="cancel-read">Cancel</button>
+        </div>
+      </form>
+    </dialog>
+  </main>
+  <script src="js/ui.js"></script>
+  <script src="js/api.js"></script>
+  <script src="data/fallback-books.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/book.js"></script>
+</body>
+</html>
